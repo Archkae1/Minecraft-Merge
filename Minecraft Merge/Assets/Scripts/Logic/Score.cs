@@ -7,10 +7,19 @@ public class Score : MonoBehaviour
     public static Action<int> scoreChanged;
 
     private int _score, _highScore;
+    private ScoreData _scoreData;
 
-    public void Load()
+    public int score { get { return _score; } }
+
+    public void Load(ScoreData scoreData = null)
     {
         _score = 0;
+        if (scoreData)
+        {
+            _scoreData = scoreData;
+            _score = _scoreData.savedScore;
+            _scoreData.savedScore = 0;
+        }
         LoadHighScore();
     }
 
@@ -39,7 +48,6 @@ public class Score : MonoBehaviour
 
     private void LoadHighScore()
     {
-        Debug.Log(YandexGame.savesData.highscore);
         _highScore = YandexGame.savesData.highscore;
     }
 

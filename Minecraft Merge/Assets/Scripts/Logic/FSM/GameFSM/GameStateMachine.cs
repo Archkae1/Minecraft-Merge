@@ -9,11 +9,11 @@ public class GameStateMachine
 
     public Type currentTypeOfState { get { return _currentTypeOfState; } }
 
-    public GameStateMachine(GameInstance gameInstance, GameInstanceView gameInstanceView, PlayerController playerController, GameUI gameUI, Score score)
+    public GameStateMachine(GameInstance gameInstance, GameInstanceView gameInstanceView, PlayerController playerController, GameUI gameUI, Score score, ScoreData scoreData)
     {
         states = new Dictionary<Type, IGameState>()
         {
-            [typeof(LoadGameState)] = new LoadGameState(gameInstance, gameInstanceView, this, playerController, gameUI, score),
+            [typeof(LoadGameState)] = new LoadGameState(gameInstance, gameInstanceView, this, playerController, gameUI, score, scoreData),
             [typeof(PlayGameState)] = new PlayGameState(playerController, gameInstanceView),
             [typeof(PauseGameState)] = new PauseGameState(gameUI),
             [typeof(EndGameState)] = new EndGameState(gameUI, gameInstanceView)

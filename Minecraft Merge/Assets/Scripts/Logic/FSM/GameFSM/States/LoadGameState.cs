@@ -8,8 +8,9 @@ public class LoadGameState : IGameState
     private PlayerController _playerController;
     private GameUI _gameUI;
     private Score _score;
+    private ScoreData _scoreData;
 
-    public LoadGameState(GameInstance gameInstance, GameInstanceView gameInstanceView, GameStateMachine gameStateMachine, PlayerController playerController, GameUI gameUI, Score score)
+    public LoadGameState(GameInstance gameInstance, GameInstanceView gameInstanceView, GameStateMachine gameStateMachine, PlayerController playerController, GameUI gameUI, Score score, ScoreData scoreData)
     {
         _gameInstance = gameInstance;
         _gameStateMachine = gameStateMachine;
@@ -17,11 +18,12 @@ public class LoadGameState : IGameState
         _gameUI = gameUI;
         _score = score;
         _gameInstanceView = gameInstanceView;
+        _scoreData = scoreData;
     }
 
     public void Enter()
     {
-        _score.Load();
+        _score.Load(_scoreData);
         _gameUI.Load(_score);
         _playerController.Load();
         _gameInstanceView.Load();

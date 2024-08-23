@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using YG;
 
@@ -18,17 +17,11 @@ public class EndGameState : IGameState
         Time.timeScale = 0f;
         _gameUI.EnableEndMenu();
         _gameInstanceView.PlayEndSound();
-        _gameUI.StartCoroutine(LateFullscreenAdShow());
+        YandexGame.FullscreenShow();
     }
 
     public void Exit()
     {
 
-    }
-
-    private IEnumerator LateFullscreenAdShow()
-    {
-        yield return new WaitForSecondsRealtime(0.7f);
-        YandexGame.FullscreenShow();
     }
 }
