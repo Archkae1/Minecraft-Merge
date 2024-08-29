@@ -1,5 +1,4 @@
 using UnityEngine;
-using YG;
 
 public class EndGameState : IGameState
 {
@@ -17,7 +16,6 @@ public class EndGameState : IGameState
         Time.timeScale = 0f;
         _gameUI.EnableEndMenu();
         _gameInstanceView.PlayEndSound();
-        YandexGame.FullscreenShow();
     }
 
     public void Exit()

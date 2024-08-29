@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerModel : MonoBehaviour 
 {
     public static Action<int> nextCubeChanged;
+    public static Action cubeDismissed;
 
     [SerializeField] private Transform _cubeSpawnPoint, _rightBorder, _leftBorder;
     private CubeFactory _cubeFactory;
@@ -42,6 +43,7 @@ public class PlayerModel : MonoBehaviour
         _cube.transform.parent = null;
         _cube.StartMoving();
         _cube = null;
+        cubeDismissed?.Invoke();
     }
 
     private void DefineComponents() => _cubeFactory = FindObjectOfType<CubeFactory>();

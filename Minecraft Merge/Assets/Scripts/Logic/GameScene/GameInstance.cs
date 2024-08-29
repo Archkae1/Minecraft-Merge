@@ -38,10 +38,7 @@ public class GameInstance : MonoBehaviour
     public void UnPause()
     {
         if (_gameStateMachine.currentTypeOfState != typeof(PlayGameState))
-        {
             _gameStateMachine.Enter<PlayGameState>();
-            YandexGame.FullscreenShow();
-        }
     }
 
     public void EndGame()
@@ -50,13 +47,15 @@ public class GameInstance : MonoBehaviour
             _gameStateMachine.Enter<EndGameState>();
     }
 
-    public void Restart()
+    public void Restart(bool showAd = true)
     {
+        if (showAd) YandexGame.FullscreenShow();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Back()
     {
+        YandexGame.FullscreenShow();
         SceneManager.LoadScene(0);
     }
 
@@ -65,7 +64,7 @@ public class GameInstance : MonoBehaviour
         if (rewVideoID == 1)
         {
             _scoreData.savedScore = _score.score;
-            Restart();
+            Restart(false);
         }
     }
 
